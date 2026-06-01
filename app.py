@@ -67,11 +67,15 @@ def get_restock_recommendation(stock, forecast_df):
 # ==============================================================================
 
 df = load_data()
-st.title("💎 Gold Shop Inventory Command Center")
+st.title("💎 Gold Shop Inventory Dashboard")
+
+# Get only the very last recorded day for each unique item
+latest_inventory_df = df.sort_values("date").drop_duplicates(subset=["item_name"], keep="last")
+real_inventory_value = (latest_inventory_df["stock_left"] * latest_inventory_df["unit_price"]).sum()
 
 # KPI Section
 c1, c2, c3, c4 = st.columns(4)
-c1.metric("Total Inventory Value", f"{(df['stock_left']*df['unit_price']).sum():,.0f} MMK")
+c1.metric("Total Inventory Value", f"{real_inventory_value:,.0f} MMK")
 c2.metric("Avg Daily Sales", f"{df['quantity_sold'].mean():.1f}")
 c3.metric("Items Monitored", df["item_name"].nunique())
 c4.metric("Best Seller", df.groupby("item_name")["quantity_sold"].sum().idxmax())
