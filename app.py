@@ -8,14 +8,15 @@ st.set_page_config(page_title="Gold Shop Analytics", layout="wide")
 st.title("✨ Gold Shop Inventory Command Center")
 
 # 2. Load Data
-df = pd.read_csv('cleaned_gold_stock_data.csv')
+df = pd.read_csv('data/cleaned_gold_stock_data.csv')
 
 # 3. Sidebar Selection
 item_selected = st.sidebar.selectbox("Select Jewelry Item", df['item_name'].unique())
 
 # 4. Load the specific model
 model_filename = f"{item_selected}_model.pkl"
-
+# Show the path it is looking for
+st.write(f"Looking for model at: {os.path.abspath(model_filename)}")
 if os.path.exists(model_filename):
     with open(model_filename, 'rb') as f:
         model = pickle.load(f)
