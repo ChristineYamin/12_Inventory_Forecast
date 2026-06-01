@@ -7,6 +7,8 @@ Managing a high-value retail business (like a family gold shop) requires precisi
 
 Using Meta's `Prophet` forecasting model, this dashboard provides 30-day demand projections, dynamic profitability tracking, and an automated 3-tier restock intelligence system, all wrapped in a luxury-grade, minimalist executive UI.
 
+## Dataset
+I Create the dataset with python, That dataset has 2000 rows and 6 columns, and to look like the realworld dataset, i add the missing values and outliers. 
 ## ✨ Core Features
 * **📈 Predictive Analytics:** Utilizes `Prophet` time-series forecasting to predict specific item demand for the next 30 days based on historical sales data.
 * **💰 Dynamic Profitability Tracking:** Calculates estimated profit marginas dynamically via an interactive executive slider, shifting the focus from gross revenue to actual asset profitability.
